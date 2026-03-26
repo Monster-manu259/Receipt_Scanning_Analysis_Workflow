@@ -4,8 +4,8 @@ from src.db.database import init_db
 from src.routes import router
 
 app = FastAPI(
-    title       = "DMart Receipt Analyser",
-    description = "Upload DMart receipts → OCR → Groq LLM extraction → Neon DB",
+    title       = "Fuel Bill Analyser",
+    description = "Upload fuel bills → OCR → Groq LLM extraction → Neon DB",
     version     = "2.0.0"
 )
 

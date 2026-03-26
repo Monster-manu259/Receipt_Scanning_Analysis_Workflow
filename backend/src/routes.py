@@ -9,7 +9,7 @@ groq = GroqService()
 
 # ── POST /upload ──────────────────────────────────────────────────────────────
 
-@router.post("/upload", summary="Upload a DMart receipt image")
+@router.post("/upload", summary="Upload a fuel bill image")
 async def upload_receipt(file: UploadFile = File(...)):
     allowed_content_types = {"image/jpeg", "image/jpg", "image/png", "application/pdf"}
     if file.content_type not in allowed_content_types:
@@ -22,7 +22,7 @@ async def upload_receipt(file: UploadFile = File(...)):
     image_bytes = await file.read()
     ocr_text    = ocr.extract_text(image_bytes, content_type=file.content_type, filename=file.filename)
 
-    # 2. LLM — extract all fields from OCR text and return structured JSON
+    # 2. LLM — extract fuel bill fields from OCR text and return structured JSON
     extracted   = groq.extract_receipt_data(ocr_text)
 
     # 3. Save to Neon DB
